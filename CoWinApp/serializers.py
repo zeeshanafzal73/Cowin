@@ -44,17 +44,6 @@ class UsersSerializer(serializers.ModelSerializer):
         representation['email'] = UserSerializer(instance.userId).data['email'] if instance.userId else None
         return representation
 
-
-# def get_tokens_for_user(user_id, user, profile):
-#     refresh = RefreshToken.for_user(user_id)
-#
-#     return {
-#         'refresh': str(refresh),
-#         'access': str(refresh.access_token),
-#         'user': user,
-#         'profile': profile,
-#     }
-
 class ForgetPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
@@ -184,19 +173,6 @@ class FlashCardInterviewQuestionsSerializer(serializers.ModelSerializer):
 
     def get_subcategory_name(self, obj):
         return obj.subcategory.name if obj.subcategory else None
-
-
-# class FreeMockInterviewSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = FreeMockInterview
-#         fields = '__all__'
-#
-#     def to_representation(self, instance):
-#         representation = super().to_representation(instance)
-#         representation.pop('goals')
-#         representation['position'] = SetGoalsSerializer(instance.goals).data['position'] if instance.goals else None
-#         representation['company'] = SetGoalsSerializer(instance.goals).data['company_name'] if instance.goals else None
-#         return representation
 
 class SetGoalsLookups(serializers.ModelSerializer):
     class Meta:
